@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat > *)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Kombee\\Documents\\hackathon-4.0\\apps\\api\\src\\services",
+      "C:\\Users\\Kombee\\Documents\\hackathon-4.0\\apps\\api\\src\\controllers",
+      "C:\\Users\\Kombee\\Documents\\hackathon-4.0\\apps\\api\\src\\routes",
+      "C:\\Users\\Kombee\\Documents\\hackathon-4.0\\apps\\web\\src\\styles",
+      "C:\\Users\\Kombee\\Documents\\hackathon-4.0"
+    ]
+  }
+}
