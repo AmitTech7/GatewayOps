@@ -10,7 +10,7 @@ export class MetricsRepository {
     }
 
     const countResult = await query.clone().count('*').first() as any;
-    const totalRequests = countResult.count;
+    const totalRequests = parseInt(countResult.count, 10);
 
     let failedQuery = db('api_logs');
     if (from && to) {
@@ -20,7 +20,7 @@ export class MetricsRepository {
       .where('status_code', '>=', 400)
       .count('*')
       .first() as any;
-    const failedRequests = failedResult.count;
+    const failedRequests = parseInt(failedResult.count, 10);
 
     const successRate = totalRequests > 0 
       ? Math.round((totalRequests - failedRequests) / totalRequests * 100)
@@ -50,9 +50,9 @@ export class MetricsRepository {
       total_requests: totalRequests,
       failed_requests: failedRequests,
       success_rate: successRate,
-      auth_failures: authFailures.count,
+      auth_failures: parseInt(authFailures.count, 10),
       avg_response_time: avgResponseTime,
-      rate_limit_violations: violations.count,
+      rate_limit_violations: parseInt(violations.count, 10),
     };
   }
 
@@ -159,9 +159,9 @@ export class MetricsRepository {
       .first() as any;
 
     return {
-      total_requests_2xx: result2xx.count,
-      total_requests_4xx: result4xx.count,
-      total_requests_5xx: result5xx.count,
+      total_requests_2xx: parseInt(result2xx.count, 10),
+      total_requests_4xx: parseInt(result4xx.count, 10),
+      total_requests_5xx: parseInt(result5xx.count, 10),
       peak_rpm: 0,
       slowest_endpoint: {
         endpoint: slowest?.endpoint || '',

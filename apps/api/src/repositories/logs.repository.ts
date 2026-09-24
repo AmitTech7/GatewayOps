@@ -17,7 +17,7 @@ export class LogsRepository {
     }
 
     if (statusCode) {
-      query = query.orWhere('status_code', statusCode);
+      query = query.where('status_code', statusCode);
     }
 
     if (from && to) {
@@ -29,7 +29,7 @@ export class LogsRepository {
     }
 
     const total = await query.clone().count('* as count').first() as any;
-    const offset = page * limit;
+    const offset = (page - 1) * limit;
 
     const logs = await query
       .orderBy('created_at', 'desc')
